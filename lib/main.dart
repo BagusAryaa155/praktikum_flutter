@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/detail_profile.dart';
+import 'package:flutter_application_1/screens/detail_profile.dart';
+import 'package:flutter_application_1/screens/list_profile.dart';
+import 'package:flutter_application_1/models/profile.dart';
+import 'package:flutter_application_1/screens/edit_profile.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +34,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: ListProfile(),
     );
   }
 }
@@ -57,8 +60,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   int step = 4;
-
-   final TextEditingController namaController = TextEditingController();
+  final TextEditingController namaController = TextEditingController();
 
   void _incrementCounter() {
     setState(() {
@@ -71,23 +73,23 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-   void _decrementCounter() {
+  void _decrementCounter() {
     if (_counter > 0) {
-    setState(() {
-      _counter -= step;
-    });
-  } else {
-    ScaffoldMessenger.of(context).showSnackBar( 
-      const SnackBar(content: Text('Counter cannot be negative')),
-    );
+      setState(() {
+        _counter -= step;
+      });
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Counter cannot be negative')),
+      );
+    }
   }
-}
 
-void _resetCounter() {
-  setState(() {
-    _counter = 0;
-  });
-}
+  void _resetCounter() {
+    setState(() {
+      _counter = 0;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -127,30 +129,28 @@ void _resetCounter() {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text('I Gusti Bagus Arya Pratyusa Putra Dinata - 2415354004'),
-            Text('Step: $step', style: const TextStyle(fontSize: 16)),
+            const Text('Step: 4'),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children:[
+              children: [
                 ElevatedButton(
-                  onPressed: _incrementCounter, 
+                  onPressed: _incrementCounter,
                   child: Icon(Icons.add),
                 ),
-                SizedBox(width: 8),
-              ElevatedButton(
-                onPressed: _decrementCounter, 
-                child: Icon(Icons.remove),
-              ),
-              SizedBox(width: 8),
-              ElevatedButton(
-                onPressed: _resetCounter, 
-                child: Icon(Icons.refresh),
-              ),
-              ]
-             ), 
+                ElevatedButton(
+                  onPressed: _decrementCounter,
+                  child: Icon(Icons.remove),
+                ),
+                ElevatedButton(
+                  onPressed: _resetCounter,
+                  child: const Text('0', style: TextStyle(fontSize: 24)),
+                ),
+              ],
+            ),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: TextField(
@@ -164,19 +164,19 @@ void _resetCounter() {
             ElevatedButton(
               onPressed: () {
                 String nama = namaController.text;
-                int angka = _counter;
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => DetailProfile(nama: nama, angka: angka),
-                    ),
-                  );
+                    builder: (context) =>
+                        DetailProfile(profile: Profile(id: 0, name: nama, bio: "Developer", phone: "08558071191")),
+                  ),
+                );
               },
-              child: Text("Go to detail profile"),
-            ) 
+              child: Text("Go to Detail Profile"),
+            ),
           ],
         ),
-        ),
+      ),
       floatingActionButton: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -195,9 +195,7 @@ void _resetCounter() {
           FloatingActionButton(
             onPressed: _resetCounter,
             tooltip: 'Reset',
-            child: const Text('0',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
+            child: const Text('0', style: TextStyle(fontSize: 24)),
           ),
         ],
       ),
