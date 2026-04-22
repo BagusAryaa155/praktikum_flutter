@@ -53,18 +53,23 @@ class _DetailProfileState extends State<DetailProfile> {
               widget.profile.name,
               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 8),
+            SizedBox(height: 5),
+            Text(
+              "NIM : ${widget.profile.nim}",
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 4),
             Text(
               widget.profile.bio,
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 8),
+            SizedBox(height: 4),
             Text(
               "Phone Number : ${widget.profile.phone}",
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             ),
 
-            SizedBox(height: 8),
+            SizedBox(height: 10),
 
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),

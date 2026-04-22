@@ -13,6 +13,7 @@ class EditProfile extends StatefulWidget {
 class _EditProfileState extends State<EditProfile> {
   final _formKey = GlobalKey<FormState>();
   late TextEditingController _nameController;
+  late TextEditingController _nimController;
   late TextEditingController _bioController;
   late TextEditingController _phoneController;
 
@@ -20,6 +21,7 @@ class _EditProfileState extends State<EditProfile> {
   void initState() {
     super.initState();
     _nameController = TextEditingController(text: widget.profile.name);
+    _nimController = TextEditingController(text: widget.profile.nim);
     _bioController = TextEditingController(text: widget.profile.bio);
     _phoneController = TextEditingController(text: widget.profile.phone);
   }
@@ -27,6 +29,7 @@ class _EditProfileState extends State<EditProfile> {
   @override
   void dispose() {
     _nameController.dispose();
+    _nimController.dispose();
     _bioController.dispose();
     _phoneController.dispose();
     super.dispose();
@@ -47,6 +50,10 @@ class _EditProfileState extends State<EditProfile> {
                 decoration: InputDecoration(labelText: 'Nama'),
               ),
               TextFormField(
+                controller: _nimController,
+                decoration: InputDecoration(labelText: 'Nim'),
+              ),
+              TextFormField(
                 controller: _bioController,
                 decoration: InputDecoration(labelText: 'Bio'),
               ),
@@ -59,6 +66,7 @@ class _EditProfileState extends State<EditProfile> {
                   if (_formKey.currentState!.validate()) {
                     final updatedProfile = Profile(
                       name: _nameController.text,
+                      nim: _nimController.text,
                       bio: _bioController.text,
                       phone: _phoneController.text,
                       id: widget.profile.id,

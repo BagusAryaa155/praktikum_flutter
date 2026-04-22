@@ -18,8 +18,9 @@ class _ListProfileState extends State<ListProfile> {
       int lastIndex = profiles.length;
       profiles.add(
         Profile(
-          id: lastIndex + 4,
-          name: "Arya ${lastIndex + 4}",
+          id: lastIndex + 1,
+          name: "GusArya ${lastIndex + 1}",
+          nim: "04",
           bio: "Web Developer",
           phone: "08558071191",
         ),
@@ -51,13 +52,14 @@ class _ListProfileState extends State<ListProfile> {
             child: ListTile(
               leading: CircleAvatar(
                 backgroundImage: NetworkImage(
-                  'https://i.pravatar.cc/150?img=10',
+                  'https://img.freepik.com/free-vector/smiling-young-man-illustration_1308-174669.jpg',
                 ),
               ),
               title: Text(profile.name),
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Text("NIM: ${profile.nim}"), // <-- Tambahkan baris ini
                   Text(profile.bio),
                   SizedBox(height: 4),
                   Text(
