@@ -22,7 +22,7 @@ class _ListProfileState extends State<ListProfile> {
           name: "GusArya ${lastIndex + 1}",
           nim: "04",
           bio: "Web Developer",
-          phone: "08558071191",
+          phone: "085807191",
         ),
       );
     });
