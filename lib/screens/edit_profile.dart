@@ -13,25 +13,22 @@ class EditProfile extends StatefulWidget {
 class _EditProfileState extends State<EditProfile> {
   final _formKey = GlobalKey<FormState>();
   late TextEditingController _nameController;
-  late TextEditingController _nimController;
   late TextEditingController _bioController;
-  late TextEditingController _phoneController;
+  late TextEditingController _phone04Controller;
 
   @override
   void initState() {
     super.initState();
     _nameController = TextEditingController(text: widget.profile.name);
-    _nimController = TextEditingController(text: widget.profile.nim);
     _bioController = TextEditingController(text: widget.profile.bio);
-    _phoneController = TextEditingController(text: widget.profile.phone);
+    _phone04Controller = TextEditingController(text: widget.profile.phone04);
   }
 
   @override
   void dispose() {
     _nameController.dispose();
-    _nimController.dispose();
     _bioController.dispose();
-    _phoneController.dispose();
+    _phone04Controller.dispose();
     super.dispose();
   }
 
@@ -50,25 +47,20 @@ class _EditProfileState extends State<EditProfile> {
                 decoration: InputDecoration(labelText: 'Nama'),
               ),
               TextFormField(
-                controller: _nimController,
-                decoration: InputDecoration(labelText: 'Nim'),
-              ),
-              TextFormField(
                 controller: _bioController,
                 decoration: InputDecoration(labelText: 'Bio'),
               ),
               TextFormField(
-                controller: _phoneController,
-                decoration: InputDecoration(labelText: 'Phone'),
+                controller: _phone04Controller,
+                decoration: InputDecoration(labelText: 'Phone04'),
               ),
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     final updatedProfile = Profile(
                       name: _nameController.text,
-                      nim: _nimController.text,
                       bio: _bioController.text,
-                      phone: _phoneController.text,
+                      phone04: _phone04Controller.text,
                       id: widget.profile.id,
                     );
                     Navigator.pop(context, updatedProfile);

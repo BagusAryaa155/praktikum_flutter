@@ -20,9 +20,8 @@ class _ListProfileState extends State<ListProfile> {
         Profile(
           id: lastIndex + 1,
           name: "GusArya ${lastIndex + 1}",
-          nim: "04",
           bio: "Web Developer",
-          phone: "085807191",
+          phone04: "085807191",
         ),
       );
     });
@@ -58,12 +57,11 @@ class _ListProfileState extends State<ListProfile> {
               title: Text(profile.name),
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("NIM: ${profile.nim}"), // <-- Tambahkan baris ini
+                children: [// <-- Tambahkan baris ini
                   Text(profile.bio),
                   SizedBox(height: 4),
                   Text(
-                    "Phone: ${profile.phone}",
+                    "Phone04 : ${profile.phone04}",
                     style: TextStyle(color: Colors.grey),
                   ),
                 ],
